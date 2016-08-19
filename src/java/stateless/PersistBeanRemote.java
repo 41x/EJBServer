@@ -6,6 +6,7 @@
 package stateless;
 
 import entity.DItem;
+import java.math.BigInteger;
 import javax.ejb.Remote;
 
 /**
@@ -16,4 +17,5 @@ import javax.ejb.Remote;
 public interface PersistBeanRemote {
     void addData(DItem item);
     long getDbCount();
+    void cleanTable();
 }

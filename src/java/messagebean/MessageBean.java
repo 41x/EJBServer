@@ -5,17 +5,17 @@
  */
 package messagebean;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.DItem;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.ejb.MessageDrivenContext;
-import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
-import org.codehaus.jackson.map.ObjectMapper;
+//import org.codehaus.jackson.map.ObjectMapper;
 import stateless.PersistBeanRemote;
 
 /**
@@ -45,7 +45,7 @@ public class MessageBean implements MessageListener {
             String jsn = (String) objectMessage.getObject();
 
             DItem item = jsnToDitem(jsn);
-            if(item==null){
+            if (item == null) {
                 return;
             }
             entityBean.addData(item);
@@ -57,19 +57,18 @@ public class MessageBean implements MessageListener {
 
     private DItem jsnToDitem(String jsn) {
         ObjectMapper mapper = new ObjectMapper();
-        DItem item=null;
+        DItem item = null;
         try {
             item = mapper.readValue(jsn, DItem.class);
         } catch (Exception e) {
             logError(e);
             return null;
-        } 
+        }
         return item;
     }
 
     private void logError(Exception e) {
-//        todo log error
+        System.out.println(e.getMessage());
     }
 
-    
 }

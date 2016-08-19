@@ -6,9 +6,11 @@
 package stateless;
 
 import entity.DItem;
+import java.math.BigInteger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,6 +32,11 @@ public class PersistBean implements PersistBeanRemote {
 
     @Override
     public long getDbCount() {
-        return (long) entityManager.createQuery("select count(*) from data").getSingleResult();
+        BigInteger count = (BigInteger)entityManager.createNativeQuery("SELECT Count(*) from testdata").getSingleResult();
+        return count.longValue();
+    }
+    @Override
+    public void cleanTable(){
+        entityManager.createNativeQuery("delete FROM testdata").executeUpdate();
     }
 }
