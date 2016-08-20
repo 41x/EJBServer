@@ -9,10 +9,6 @@ import entity.DItem;
 import java.math.BigInteger;
 import javax.ejb.Remote;
 
-/**
- *
- * @author iskra
- */
 @Remote
 public interface PersistBeanRemote {
     void addData(DItem item);

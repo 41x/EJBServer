@@ -18,10 +18,6 @@ import javax.jms.ObjectMessage;
 //import org.codehaus.jackson.map.ObjectMapper;
 import stateless.PersistBeanRemote;
 
-/**
- *
- * @author iskra
- */
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/queue/ejb3Queue"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
